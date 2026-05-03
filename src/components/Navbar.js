@@ -103,7 +103,7 @@ export default function Navbar() {
 
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-3 shadow bg-base-100 rounded-box w-56 space-y-2"
+              className="menu menu-sm dropdown-content z-50 mt-3 z-[1] p-3 shadow bg-base-100 rounded-box w-56 space-y-2"
             >
               <li>
                 <Link href="/" className="flex items-center gap-2">
