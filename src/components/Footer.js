@@ -1,63 +1,122 @@
+"use client";
+
+import Link from "next/link";
 import {
-  FaSun,
-  FaFacebook,
+  FaFacebookF,
   FaInstagram,
   FaTwitter,
-  FaEnvelope,
-  FaPhone,
+  FaYoutube,
 } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="bg-base-200 mt-20">
+    <footer className="bg-base-200 mt-16">
 
-      <div className="max-w-7xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-8">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 py-10">
 
-        {/* Brand */}
-        <div>
-          <h2 className="flex items-center gap-2 text-xl font-bold text-primary">
-            <FaSun /> SunCart
-          </h2>
-          <p className="mt-2 text-sm text-gray-600">
-            Your trusted summer essentials store. Shop the best products for your sunny days.
-          </p>
-        </div>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
 
-        {/* Links */}
-        <div>
-          <h3 className="font-semibold mb-3">Quick Links</h3>
-          <ul className="space-y-2 text-sm">
-            <li><a className="hover:text-primary cursor-pointer">Home</a></li>
-            <li><a className="hover:text-primary cursor-pointer">Products</a></li>
-            <li><a className="hover:text-primary cursor-pointer">Privacy Policy</a></li>
-          </ul>
-        </div>
+          {/* BRAND */}
+          <div className="space-y-3">
+            <h2 className="text-xl font-bold text-primary">
+              SunCart
+            </h2>
+            <p className="text-sm text-gray-500">
+              Your one-stop shop for summer essentials like sunglasses,
+              outfits, skincare, and more.
+            </p>
 
-        {/* Contact */}
-        <div>
-          <h3 className="font-semibold mb-3">Contact</h3>
+            {/* SOCIAL */}
+            <div className="flex gap-3 pt-2">
 
-          <p className="flex items-center gap-2 text-sm">
-            <FaEnvelope /> support@suncart.com
-          </p>
+              <a className="btn btn-circle btn-sm bg-base-100 hover:bg-primary hover:text-white">
+                <FaFacebookF />
+              </a>
 
-          <p className="flex items-center gap-2 text-sm mt-2">
-            <FaPhone /> +123 456 789
-          </p>
+              <a className="btn btn-circle btn-sm bg-base-100 hover:bg-primary hover:text-white">
+                <FaInstagram />
+              </a>
 
-          <div className="flex gap-4 mt-4 text-lg">
-            <FaFacebook className="hover:text-primary cursor-pointer" />
-            <FaInstagram className="hover:text-primary cursor-pointer" />
-            <FaTwitter className="hover:text-primary cursor-pointer" />
+              <a className="btn btn-circle btn-sm bg-base-100 hover:bg-primary hover:text-white">
+                <FaTwitter />
+              </a>
+
+              <a className="btn btn-circle btn-sm bg-base-100 hover:bg-primary hover:text-white">
+                <FaYoutube />
+              </a>
+
+            </div>
           </div>
+
+          {/* QUICK LINKS */}
+          <div>
+            <h3 className="font-semibold mb-3">Quick Links</h3>
+
+            <ul className="space-y-2 text-sm text-gray-600">
+              <li>
+                <Link href="/" className="hover:text-primary">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link href="/products" className="hover:text-primary">
+                  Products
+                </Link>
+              </li>
+              <li>
+                <Link href="/my-profile" className="hover:text-primary">
+                  Profile
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* CUSTOMER */}
+          <div>
+            <h3 className="font-semibold mb-3">Customer</h3>
+
+            <ul className="space-y-2 text-sm text-gray-600">
+              <li className="hover:text-primary cursor-pointer">
+                Help Center
+              </li>
+              <li className="hover:text-primary cursor-pointer">
+                Returns
+              </li>
+              <li className="hover:text-primary cursor-pointer">
+                Shipping Info
+              </li>
+            </ul>
+          </div>
+
+          {/* NEWSLETTER */}
+          <div>
+            <h3 className="font-semibold mb-3">Newsletter</h3>
+
+            <p className="text-sm text-gray-500 mb-3">
+              Get updates on new arrivals and offers
+            </p>
+
+            <div className="flex gap-2">
+              <input
+                type="email"
+                placeholder="Email address"
+                className="input input-bordered input-sm w-full"
+              />
+              <button className="btn btn-primary btn-sm">
+                Subscribe
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        {/* BOTTOM */}
+        <div className="border-t mt-8 pt-4 text-center text-sm text-gray-500">
+          © {new Date().getFullYear()} SunCart. All rights reserved.
         </div>
 
       </div>
 
-      {/* Bottom */}
-      <div className="text-center text-sm py-4 border-t">
-        © 2026 SunCart. All rights reserved.
-      </div>
     </footer>
   );
 }
