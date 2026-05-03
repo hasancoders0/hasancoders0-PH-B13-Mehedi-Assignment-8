@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+#  SunCart – Summer Essentials Store
 
-## Getting Started
+##  Project Overview
 
-First, run the development server:
+**SunCart** is a modern summer-themed eCommerce web application where users can browse and purchase seasonal products such as sunglasses, skincare items, beach accessories, and more. The platform includes authentication, protected routes, and a clean, responsive UI.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+##  Purpose
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+The purpose of this project is to demonstrate:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+* Full-stack development using Next.js (App Router)
+* Authentication (Email & Google login)
+* Database integration with MongoDB
+* Protected routes and user profile system
+* Modern UI/UX with responsive design and animations
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## Live URL
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+===>  https://mehedi-ph-assignment-8.vercel.app
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Key Features
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Product System
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+* Browse all summer products
+* Product details page
+
+### Authentication
+
+* Email & password login (custom API)
+* Google login using NextAuth
+* Redirect after login
+
+
+### UI/UX
+
+* Fully responsive design
+* Clean card-based layout
+* Interactive product cards
+* Hero slider section
+* Animate.css animations
+
+---
+
+## Technologies Used
+
+### Frontend
+
+* Next.js (App Router)
+* React
+* Tailwind CSS
+* DaisyUI
+* React Icons
+* Animate.css
+
+### Backend
+
+* Next.js API Routes
+* MongoDB Atlas
+
+### Authentication
+
+* NextAuth (Google login)
+* Custom authentication (email/password)
+
+---
+
+##  Assignment Requirements Covered
+
+=> Responsive design
+=> Authentication (Email + Google)
+=> Protected routes
+=> MongoDB database integration
+=> Animation using Animate.css
+=> Meaningful UI/UX improvements
+=> Multiple pages (Home, Products, Profile)
+=> Clean component structure
