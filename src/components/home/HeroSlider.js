@@ -1,92 +1,129 @@
 "use client";
 
+import { useState, useEffect } from "react";
+import {
+  FaArrowLeft,
+  FaArrowRight,
+  FaCircle,
+} from "react-icons/fa";
 import Link from "next/link";
-import { FaArrowRight } from "react-icons/fa";
 
 export default function HeroSlider() {
+  const [current, setCurrent] = useState(0);
+
+  const slides = [
+    {
+      id: 1,
+      image: "/hero/banner1.jpg",
+    },
+    {
+      id: 2,
+      image: "/hero/banner2.jpg",
+      title: "Explore Summer Essentials",
+      subtitle: "Sunglasses, skincare & beach accessories",
+      button: "Shop Collection",
+    },
+  ];
+
+  // Auto slide
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrent((prev) =>
+        prev === slides.length - 1 ? 0 : prev + 1
+      );
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const nextSlide = () => {
+    setCurrent((prev) =>
+      prev === slides.length - 1 ? 0 : prev + 1
+    );
+  };
+
+  const prevSlide = () => {
+    setCurrent((prev) =>
+      prev === 0 ? slides.length - 1 : prev - 1
+    );
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-8 mt-6">
 
-      <div className="carousel w-full rounded-2xl overflow-hidden shadow-lg">
+      <div className="relative w-full h-[260px] md:h-[420px] rounded-2xl overflow-hidden shadow-lg">
 
-        {/* SLIDE 1 */}
-        <div id="slide1" className="carousel-item relative w-full">
+        {/* SLIDES */}
+        {slides.map((slide, index) => (
+          <div
+            key={slide.id}
+            className={`absolute inset-0 transition-all duration-700 ${
+              index === current
+                ? "opacity-100 scale-100 z-10 animate__animated animate__fadeIn"
+                : "opacity-0 scale-95 z-0"
+            }`}
+          >
+            <img
+              src={slide.image}
+              alt="banner"
+              className="w-full h-full object-cover object-center"
+            />
 
-          <img
-            src="/hero/banner1.jpg"
-            className="w-full h-[250px] md:h-[400px] object-cover"
-            alt="Summer Sale"
-          />
+            {/* SECOND SLIDE TEXT (CENTERED + FIXED COLOR) */}
+            {index === 1 && (
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
 
-          {/* OVERLAY */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent flex items-center">
+                <h2 className="text-2xl md:text-4xl font-bold text-gray-900">
+                  {slide.title}
+                </h2>
 
-            <div className="text-white p-6 md:p-10 max-w-lg space-y-3">
+                <p className="text-sm md:text-base text-gray-700 mt-2">
+                  {slide.subtitle}
+                </p>
 
-              <h1 className="text-2xl md:text-4xl font-bold">
-                Summer Sale 50% OFF
-              </h1>
+                <Link
+                  href="/products"
+                  className="btn btn-primary mt-4 rounded-full flex items-center gap-2"
+                >
+                  {slide.button}
+                  <FaArrowRight />
+                </Link>
 
-              <p className="text-sm md:text-base opacity-90">
-                Hot deals on all summer essentials
-              </p>
-
-              <Link
-                href="/products"
-                className="btn btn-primary btn-sm md:btn-md rounded-full flex items-center gap-2 w-fit"
-              >
-                Shop Now
-                <FaArrowRight />
-              </Link>
-
-            </div>
+              </div>
+            )}
           </div>
+        ))}
 
-          {/* NAV */}
-          <div className="absolute flex justify-between transform -translate-y-1/2 left-3 right-3 top-1/2">
-            <a href="#slide2" className="btn btn-circle btn-sm">❮</a>
-            <a href="#slide2" className="btn btn-circle btn-sm">❯</a>
-          </div>
-        </div>
+        {/* ARROWS */}
+        <button
+          onClick={prevSlide}
+          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 btn btn-circle bg-white text-black hover:bg-primary hover:text-white shadow-md"
+        >
+          <FaArrowLeft />
+        </button>
 
-        {/* SLIDE 2 */}
-        <div id="slide2" className="carousel-item relative w-full">
+        <button
+          onClick={nextSlide}
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 btn btn-circle bg-white text-black hover:bg-primary hover:text-white shadow-md"
+        >
+          <FaArrowRight />
+        </button>
 
-          <img
-            src="/hero/banner2.jpg"
-            className="w-full h-[250px] md:h-[400px] object-cover"
-            alt="Summer Essentials"
-          />
-
-          {/* OVERLAY */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent flex items-center">
-
-            <div className="text-white p-6 md:p-10 max-w-lg space-y-3">
-
-              <h1 className="text-2xl md:text-4xl font-bold">
-                Explore Summer Essentials
-              </h1>
-
-              <p className="text-sm md:text-base opacity-90">
-                Sunglasses, skincare & beach accessories
-              </p>
-
-              <Link
-                href="/products"
-                className="btn btn-primary btn-sm md:btn-md rounded-full flex items-center gap-2 w-fit"
-              >
-                Shop Collection
-                <FaArrowRight />
-              </Link>
-
-            </div>
-          </div>
-
-          {/* NAV */}
-          <div className="absolute flex justify-between transform -translate-y-1/2 left-3 right-3 top-1/2">
-            <a href="#slide1" className="btn btn-circle btn-sm">❮</a>
-            <a href="#slide1" className="btn btn-circle btn-sm">❯</a>
-          </div>
+        {/* DOTS */}
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrent(index)}
+              className={`text-sm transition ${
+                index === current
+                  ? "text-primary scale-125"
+                  : "text-white/70"
+              }`}
+            >
+              <FaCircle />
+            </button>
+          ))}
         </div>
 
       </div>
