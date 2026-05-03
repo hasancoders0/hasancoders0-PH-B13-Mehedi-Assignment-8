@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useSession } from "next-auth/react";
 import {
   FaSun,
@@ -17,30 +17,40 @@ import {
 export default function Navbar() {
   const pathname = usePathname();
 
-  // ✅ NextAuth session (Google)
-  const { data: session } = useSession();
+  // ✅ NextAuth session
+  const { data: session, status } = useSession();
 
   // ✅ Local user (email login)
   const [localUser, setLocalUser] = useState(null);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    try {
-      const stored = localStorage.getItem("user");
-      if (stored) setLocalUser(JSON.parse(stored));
-    } catch {
-      setLocalUser(null);
-    }
+    const loadUser = () => {
+      try {
+        const stored = localStorage.getItem("user");
+        return stored ? JSON.parse(stored) : null;
+      } catch {
+        return null;
+      }
+    };
+
+    const userData = loadUser();
+
+    // ✅ Single state update (fix warning)
+    setLocalUser(userData);
     setMounted(true);
   }, []);
 
   // 🔥 Combine both auth systems
-  const user = session?.user || localUser;
+  const user = useMemo(() => {
+    return session?.user || localUser;
+  }, [session, localUser]);
 
   const isActive = (path) => pathname === path;
   const isProducts = pathname.startsWith("/products");
 
-  if (!mounted) return null;
+  // ⛔ Prevent hydration mismatch
+  if (!mounted || status === "loading") return null;
 
   return (
     <header className="bg-base-100 shadow-sm">
@@ -54,7 +64,7 @@ export default function Navbar() {
           <FaSun /> SunCart
         </Link>
 
-        {/* DESKTOP MENU */}
+        {/* MENU */}
         <div className="hidden md:flex items-center gap-6 text-sm font-medium">
 
           <Link
@@ -89,7 +99,7 @@ export default function Navbar() {
           )}
         </div>
 
-        {/* RIGHT SIDE */}
+        {/* RIGHT */}
         <div className="flex items-center gap-3">
 
           {user ? (
@@ -97,7 +107,6 @@ export default function Navbar() {
               {/* ✅ Always default icon */}
               <FaUserCircle className="text-2xl text-gray-600" />
 
-              {/* Name */}
               <span className="hidden md:block text-sm font-medium">
                 {user.name}
               </span>
@@ -131,7 +140,6 @@ export default function Navbar() {
             </label>
 
             <ul className="menu menu-sm dropdown-content mt-3 p-3 shadow bg-base-100 rounded-box w-56 space-y-2">
-
               <li>
                 <Link href="/" className="flex items-center gap-2">
                   <FaHome /> Home

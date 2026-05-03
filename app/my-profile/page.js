@@ -3,20 +3,20 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
+import Link from "next/link";
 import toast from "react-hot-toast";
 import {
   FaUserCircle,
   FaEnvelope,
+  FaUser,
   FaSignOutAlt,
+  FaEdit,
 } from "react-icons/fa";
 
 export default function MyProfilePage() {
   const router = useRouter();
 
-  // ✅ NextAuth session (Google)
   const { data: session, status } = useSession();
-
-  // ✅ Local user (email login)
   const [localUser, setLocalUser] = useState(null);
   const [mounted, setMounted] = useState(false);
 
@@ -30,7 +30,7 @@ export default function MyProfilePage() {
     setMounted(true);
   }, []);
 
-  // 🔥 Merge both systems
+  // 🔥 Combine both
   const user = session?.user || localUser;
 
   // 🔐 Protect route
@@ -52,74 +52,107 @@ export default function MyProfilePage() {
 
   // 🔓 Logout
   const handleLogout = () => {
-    // Email logout
     localStorage.removeItem("user");
 
-    // Google logout
     if (session) {
       signOut({ callbackUrl: "/" });
     } else {
       toast.success("Logged out");
+
       setTimeout(() => {
-        window.location.href = "/";
+        router.push("/");
       }, 500);
     }
   };
 
   return (
-    <div className="min-h-screen bg-base-200 py-10 animate__animated animate__fadeInUp">
+    <div className="min-h-screen bg-base-200 py-12 animate__animated animate__fadeInUp">
 
       <div className="max-w-4xl mx-auto px-4 md:px-8">
 
-        <div className="bg-base-100 rounded-2xl shadow-md p-6 md:p-8 space-y-6">
+        {/* CARD */}
+        <div className="bg-base-100 rounded-3xl shadow-md p-6 md:p-10 space-y-8">
 
           {/* HEADER */}
           <div className="flex flex-col md:flex-row items-center gap-6">
 
-            <FaUserCircle className="text-7xl text-primary" />
+            {/* Avatar */}
+            <div className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center">
+              <FaUserCircle className="text-6xl text-primary" />
+            </div>
 
-            <div className="space-y-2 text-center md:text-left">
-              <h2 className="text-2xl font-bold">
+            {/* Info */}
+            <div className="text-center md:text-left space-y-1">
+              <h2 className="text-2xl md:text-3xl font-bold">
                 {user.name || "User"}
               </h2>
 
-              <p className="text-gray-500 flex items-center gap-2 justify-center md:justify-start">
+              <p className="text-gray-500 flex items-center justify-center md:justify-start gap-2">
                 <FaEnvelope />
                 {user.email}
               </p>
             </div>
+
           </div>
 
           <div className="border-t"></div>
 
-          {/* INFO */}
+          {/* INFO GRID */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+            <div className="p-4 bg-base-200 rounded-xl">
+              <p className="text-sm text-gray-500">Full Name</p>
+              <p className="font-medium flex items-center gap-2">
+                <FaUser />
+                {user.name}
+              </p>
+            </div>
+
+            <div className="p-4 bg-base-200 rounded-xl">
+              <p className="text-sm text-gray-500">Email Address</p>
+              <p className="font-medium flex items-center gap-2">
+                <FaEnvelope />
+                {user.email}
+              </p>
+            </div>
 
             <div className="p-4 bg-base-200 rounded-xl">
               <p className="text-sm text-gray-500">Account Type</p>
               <p className="font-medium">
-                {session ? "Google User" : "Email User"}
+                {session ? "Google Account" : "Email Account"}
               </p>
             </div>
 
             <div className="p-4 bg-base-200 rounded-xl">
               <p className="text-sm text-gray-500">Status</p>
-              <p className="font-medium text-green-600">
-                Active
-              </p>
+              <p className="font-medium text-green-600">Active</p>
             </div>
 
           </div>
 
-          {/* LOGOUT */}
-          <div className="pt-4">
+          <div className="border-t"></div>
+
+          {/* ACTION BUTTONS */}
+          <div className="flex flex-col md:flex-row gap-3">
+
+            {/* Edit Profile */}
+            <Link
+              href="/my-profile/edit"
+              className="btn btn-outline flex items-center gap-2 w-full md:w-auto"
+            >
+              <FaEdit />
+              Edit Profile
+            </Link>
+
+            {/* Logout */}
             <button
               onClick={handleLogout}
-              className="btn btn-error w-full md:w-auto flex items-center gap-2"
+              className="btn btn-error flex items-center gap-2 w-full md:w-auto"
             >
               <FaSignOutAlt />
               Logout
             </button>
+
           </div>
 
         </div>
