@@ -3,22 +3,26 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import "animate.css";
 import ToastProvider from "@/components/ToastProvider";
+import Providers from "@/components/Providers"; // ✅
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
 
-        <Navbar />
+        <Providers>
 
-        <main className="min-h-screen">
-          {children}
-        </main>
+          <Navbar />
 
-        <Footer />
+          <main className="min-h-screen">
+            {children}
+          </main>
 
-        {/* ✅ FIXED */}
-        <ToastProvider />
+          <Footer />
+
+          <ToastProvider />
+
+        </Providers>
 
       </body>
     </html>

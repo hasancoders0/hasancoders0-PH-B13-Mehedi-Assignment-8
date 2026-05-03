@@ -48,7 +48,7 @@ export default function ProductsPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-base-200 py-10 animate__animated animate__fadeInUp">
+    <div className="min-h-screen py-10 animate__animated animate__fadeInUp">
       <div className="max-w-7xl mx-auto px-4 md:px-8 space-y-6">
 
         {/* HEADER */}
