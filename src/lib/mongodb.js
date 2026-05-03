@@ -9,7 +9,6 @@ if (!uri) {
 let client;
 let clientPromise;
 
-// Prevent multiple connections in dev (hot reload)
 if (!global._mongoClientPromise) {
   client = new MongoClient(uri);
   global._mongoClientPromise = client.connect();
