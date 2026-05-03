@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 import {
   FaUser,
   FaEnvelope,
@@ -20,37 +21,47 @@ export default function RegisterPage() {
     password: "",
   });
 
+  const [loading, setLoading] = useState(false);
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
-    const res = await fetch("/api/register", {
-      method: "POST",
-      body: JSON.stringify(form),
-    });
+    try {
+      const res = await fetch("/api/register", {
+        method: "POST",
+        body: JSON.stringify(form),
+      });
 
-    const data = await res.json();
+      const data = await res.json();
 
-    if (data.success) {
-      router.push("/login");
-    } else {
-      alert(data.error);
+      if (data.success) {
+        toast.success("Account created successfully");
+        router.push("/login");
+      } else {
+        toast.error(data.error);
+      }
+    } catch (error) {
+      toast.error("Something went wrong");
     }
+
+    setLoading(false);
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4">
+    <div className="min-h-screen flex items-center justify-center px-4 bg-base-200">
 
-      <div className="w-full max-w-md bg-base-100 shadow-lg rounded-xl p-6 space-y-4">
+      <div className="w-full max-w-md bg-base-100 shadow-xl rounded-2xl p-6 space-y-5">
 
         <h2 className="text-2xl font-bold text-center text-primary">
           Create Account
         </h2>
 
-        {/* Google Signup */}
+        {/* Google */}
         <button className="btn btn-outline w-full flex items-center gap-2">
           <FaGoogle /> Continue with Google
         </button>
@@ -59,7 +70,7 @@ export default function RegisterPage() {
 
         <form onSubmit={handleRegister} className="space-y-3">
 
-          <div className="flex items-center gap-2 border p-2 rounded-lg">
+          <div className="flex items-center gap-2 border rounded-lg px-3 py-2">
             <FaUser />
             <input
               type="text"
@@ -71,7 +82,7 @@ export default function RegisterPage() {
             />
           </div>
 
-          <div className="flex items-center gap-2 border p-2 rounded-lg">
+          <div className="flex items-center gap-2 border rounded-lg px-3 py-2">
             <FaEnvelope />
             <input
               type="email"
@@ -83,7 +94,7 @@ export default function RegisterPage() {
             />
           </div>
 
-          <div className="flex items-center gap-2 border p-2 rounded-lg">
+          <div className="flex items-center gap-2 border rounded-lg px-3 py-2">
             <FaImage />
             <input
               type="text"
@@ -94,7 +105,7 @@ export default function RegisterPage() {
             />
           </div>
 
-          <div className="flex items-center gap-2 border p-2 rounded-lg">
+          <div className="flex items-center gap-2 border rounded-lg px-3 py-2">
             <FaLock />
             <input
               type="password"
@@ -106,7 +117,10 @@ export default function RegisterPage() {
             />
           </div>
 
-          <button className="btn btn-primary w-full mt-2">
+          <button
+            className={`btn btn-primary w-full mt-2 ${loading && "loading"}`}
+            disabled={loading}
+          >
             Register
           </button>
         </form>
