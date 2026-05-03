@@ -18,7 +18,6 @@ export default function ProductCard({ product }) {
     >
       <div className="card bg-base-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 rounded-2xl overflow-hidden">
 
-        {/* IMAGE */}
         <figure className="relative aspect-square overflow-hidden">
           <Image
             src={product.image}
@@ -27,11 +26,10 @@ export default function ProductCard({ product }) {
             className="object-cover group-hover:scale-105 transition duration-300"
           />
 
-          {/* ACTION BUTTONS */}
           <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition z-20">
             <button
               onClick={(e) => {
-                e.preventDefault(); // ✅ important
+                e.preventDefault();
                 e.stopPropagation();
                 console.log("Add to cart");
               }}
@@ -63,7 +61,6 @@ export default function ProductCard({ product }) {
             </button>
           </div>
 
-          {/* VIEW BUTTON */}
           <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition">
             <span className="btn btn-sm btn-primary rounded-full flex items-center gap-2">
               <FaEye />
@@ -72,15 +69,12 @@ export default function ProductCard({ product }) {
           </div>
         </figure>
 
-        {/* CONTENT */}
         <div className="card-body p-4 space-y-3">
 
-          {/* NAME */}
           <h2 className="font-semibold text-base leading-tight line-clamp-1 group-hover:text-primary transition">
             {product.name}
           </h2>
 
-          {/* RATING + BRAND */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-1 text-yellow-500 text-sm">
               <FaStar />
@@ -94,7 +88,6 @@ export default function ProductCard({ product }) {
 
           <div className="border-t border-gray-100"></div>
 
-          {/* PRICE + BUTTON */}
           <div className="flex items-center justify-between">
             <span className="text-lg font-bold text-primary">
               ${product.price}
@@ -102,7 +95,7 @@ export default function ProductCard({ product }) {
 
             <button
               onClick={(e) => {
-                e.preventDefault(); // ✅ prevents navigation
+                e.preventDefault();
                 e.stopPropagation();
                 console.log("Add to cart");
               }}
@@ -112,8 +105,6 @@ export default function ProductCard({ product }) {
               Add
             </button>
           </div>
-
-          {/* MOBILE VIEW */}
           <span className="btn btn-primary btn-sm w-full rounded-full flex items-center justify-center gap-2 md:hidden">
             <FaEye />
             View Product

@@ -21,8 +21,6 @@ export default async function ProductDetails({ params }) {
         <div className="max-w-6xl mx-auto px-4 md:px-8">
 
           <div className="grid md:grid-cols-2 gap-10 items-center">
-
-            {/* IMAGE SECTION */}
             <div className="bg-base-100 rounded-3xl p-4 shadow-sm">
               <div className="aspect-square rounded-2xl overflow-hidden">
                 <img
@@ -33,27 +31,22 @@ export default async function ProductDetails({ params }) {
               </div>
             </div>
 
-            {/* CONTENT SECTION */}
             <div className="space-y-6">
 
-              {/* BRAND */}
               <span className="text-xs font-medium bg-primary/10 text-primary px-3 py-1 rounded-full">
                 {product.brand}
               </span>
 
-              {/* NAME */}
               <h1 className="text-3xl md:text-4xl font-bold leading-tight">
                 {product.name}
               </h1>
 
-              {/* RATING */}
               <div className="flex items-center gap-2 text-yellow-500 text-sm">
                 <FaStar />
                 <span className="font-medium">{product.rating}</span>
                 <span className="text-gray-400">(120 reviews)</span>
               </div>
 
-              {/* PRICE */}
               <div className="flex items-center gap-3">
                 <span className="text-3xl font-bold text-primary">
                   ${product.price}
@@ -64,12 +57,10 @@ export default async function ProductDetails({ params }) {
                 </span>
               </div>
 
-              {/* DESCRIPTION */}
               <p className="text-gray-600 leading-relaxed">
                 {product.description}
               </p>
 
-              {/* STOCK */}
               <p className="text-sm">
                 Status:{" "}
                 <span className="text-green-600 font-medium">
@@ -77,7 +68,6 @@ export default async function ProductDetails({ params }) {
                 </span>
               </p>
 
-              {/* ACTION BUTTON */}
               <div className="pt-2">
                 <button className="btn btn-primary w-full md:w-auto px-8 flex items-center justify-center gap-2 rounded-full shadow-md hover:scale-105 transition">
                   <FaShoppingCart />

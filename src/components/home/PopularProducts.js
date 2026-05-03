@@ -19,7 +19,6 @@ export default function PopularProducts() {
 
       <div className="max-w-7xl mx-auto px-4 md:px-8 space-y-6">
 
-        {/* HEADER */}
         <div className="flex items-center justify-between">
 
           <div>
@@ -41,7 +40,6 @@ export default function PopularProducts() {
 
         </div>
 
-        {/* PRODUCT GRID */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
           {products.map((product, index) => (

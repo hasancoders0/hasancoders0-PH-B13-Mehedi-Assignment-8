@@ -75,7 +75,6 @@ export default function LoginPage () {
   return (
     <div className='min-h-screen flex items-center justify-center px-4 bg-base-200'>
       <div className='w-full max-w-md bg-base-100 shadow-xl rounded-2xl p-6 space-y-5'>
-        {/* Title */}
         <h2 className='text-2xl font-bold text-center text-primary'>
           Welcome Back
         </h2>
@@ -88,10 +87,7 @@ export default function LoginPage () {
         </button>
 
         <div className='divider'>OR</div>
-
-        {/* FORM */}
         <form onSubmit={handleLogin} className='space-y-3'>
-          {/* Email */}
           <div className='flex items-center gap-2 border rounded-lg px-3 py-2 focus-within:ring-2 focus-within:ring-primary'>
             <FaEnvelope />
             <input
@@ -103,8 +99,6 @@ export default function LoginPage () {
               required
             />
           </div>
-
-          {/* Password */}
           <div className='flex items-center gap-2 border rounded-lg px-3 py-2 focus-within:ring-2 focus-within:ring-primary'>
             <FaLock />
             <input
@@ -116,8 +110,6 @@ export default function LoginPage () {
               required
             />
           </div>
-
-          {/* Submit */}
           <button
             className={`btn btn-primary w-full mt-2 ${
               loading ? 'loading' : ''
@@ -127,8 +119,6 @@ export default function LoginPage () {
             {loading ? 'Logging in...' : 'Login'}
           </button>
         </form>
-
-        {/* Register */}
         <p className='text-sm text-center'>
           Don’t have an account?{' '}
           <Link href='/register' className='text-primary font-medium'>

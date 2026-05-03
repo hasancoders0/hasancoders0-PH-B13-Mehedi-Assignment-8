@@ -15,7 +15,6 @@ export default function TopBrands() {
 
       <div className="max-w-7xl mx-auto px-4 md:px-8 space-y-6">
 
-        {/* HEADER */}
         <div className="text-center space-y-2">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-800">
             Top Brands
@@ -24,8 +23,6 @@ export default function TopBrands() {
             Trusted brands you love
           </p>
         </div>
-
-        {/* SCROLLER */}
         <div className="overflow-hidden">
 
           <div className="flex gap-6 w-max animate-scroll">
@@ -52,8 +49,6 @@ export default function TopBrands() {
         </div>
 
       </div>
-
-      {/* SCROLL ANIMATION */}
       <style jsx>{`
         .animate-scroll {
           animation: scroll 20s linear infinite;

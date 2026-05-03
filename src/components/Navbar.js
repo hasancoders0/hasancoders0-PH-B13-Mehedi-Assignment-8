@@ -35,8 +35,6 @@ export default function Navbar() {
     };
 
     const userData = loadUser();
-
-    // ✅ Single state update (fix warning)
     setLocalUser(userData);
     setMounted(true);
   }, []);
@@ -49,14 +47,12 @@ export default function Navbar() {
   const isActive = (path) => pathname === path;
   const isProducts = pathname.startsWith("/products");
 
-  // ⛔ Prevent hydration mismatch
   if (!mounted || status === "loading") return null;
 
   return (
     <header className="bg-base-100 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
 
-        {/* LOGO */}
         <Link
           href="/"
           className="flex items-center gap-2 text-xl font-bold text-primary"
@@ -64,7 +60,6 @@ export default function Navbar() {
           <FaSun /> SunCart
         </Link>
 
-        {/* MENU */}
         <div className="hidden md:flex items-center gap-6 text-sm font-medium">
 
           <Link
@@ -99,12 +94,10 @@ export default function Navbar() {
           )}
         </div>
 
-        {/* RIGHT */}
         <div className="flex items-center gap-3">
 
           {user ? (
             <div className="flex items-center gap-2">
-              {/* ✅ Always default icon */}
               <FaUserCircle className="text-2xl text-gray-600" />
 
               <span className="hidden md:block text-sm font-medium">
@@ -133,7 +126,6 @@ export default function Navbar() {
             </>
           )}
 
-          {/* MOBILE MENU */}
           <div className="md:hidden dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost">
               <FaBars />

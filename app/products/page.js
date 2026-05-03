@@ -50,8 +50,6 @@ export default function ProductsPage() {
   return (
     <div className="min-h-screen py-10 animate__animated animate__fadeInUp">
       <div className="max-w-7xl mx-auto px-4 md:px-8 space-y-6">
-
-        {/* HEADER */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
 
           <div>
@@ -62,8 +60,6 @@ export default function ProductsPage() {
               {filteredProducts.length} products available
             </p>
           </div>
-
-          {/* SEARCH */}
           <div className="flex items-center gap-2 border rounded-full px-3 py-2 bg-white w-full md:w-80">
             <FaSearch className="text-gray-400" />
             <input
@@ -76,8 +72,6 @@ export default function ProductsPage() {
           </div>
 
         </div>
-
-        {/* CATEGORY FILTER */}
         <div className="flex flex-wrap gap-2">
           {categories.map((cat) => (
             <button
@@ -92,21 +86,18 @@ export default function ProductsPage() {
           ))}
         </div>
 
-        {/* LOADING */}
         {loading && (
           <div className="flex justify-center py-20">
             <span className="loading loading-spinner loading-lg"></span>
           </div>
         )}
 
-        {/* EMPTY */}
         {!loading && filteredProducts.length === 0 && (
           <div className="text-center py-20 text-gray-500">
             No products found
           </div>
         )}
 
-        {/* GRID */}
         {!loading && filteredProducts.length > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredProducts.map((product, index) => (

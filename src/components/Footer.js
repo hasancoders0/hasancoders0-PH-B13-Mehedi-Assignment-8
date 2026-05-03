@@ -16,7 +16,6 @@ export default function Footer() {
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
 
-          {/* BRAND */}
           <div className="space-y-3">
             <h2 className="text-xl font-bold text-primary">
               SunCart
@@ -26,7 +25,6 @@ export default function Footer() {
               outfits, skincare, and more.
             </p>
 
-            {/* SOCIAL */}
             <div className="flex gap-3 pt-2">
 
               <a className="btn btn-circle btn-sm bg-base-100 hover:bg-primary hover:text-white">
@@ -48,7 +46,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* QUICK LINKS */}
           <div>
             <h3 className="font-semibold mb-3">Quick Links</h3>
 
@@ -71,7 +68,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* CUSTOMER */}
           <div>
             <h3 className="font-semibold mb-3">Customer</h3>
 
@@ -88,7 +84,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* NEWSLETTER */}
           <div>
             <h3 className="font-semibold mb-3">Newsletter</h3>
 
@@ -110,7 +105,6 @@ export default function Footer() {
 
         </div>
 
-        {/* BOTTOM */}
         <div className="border-t mt-8 pt-4 text-center text-sm text-gray-500">
           © {new Date().getFullYear()} SunCart. All rights reserved.
         </div>

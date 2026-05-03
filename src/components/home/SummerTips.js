@@ -29,7 +29,6 @@ export default function SummerTips() {
 
       <div className="max-w-7xl mx-auto px-4 md:px-8 space-y-8">
 
-        {/* HEADER */}
         <div className="text-center max-w-xl mx-auto space-y-2">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-800">
             Summer Tips
@@ -39,7 +38,6 @@ export default function SummerTips() {
           </p>
         </div>
 
-        {/* GRID */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
           {tips.map((tip, index) => (
@@ -51,7 +49,7 @@ export default function SummerTips() {
                 animationFillMode: "both",
               }}
             >
-              {/* IMAGE */}
+
               <figure className="overflow-hidden">
                 <img
                   src={tip.image}
@@ -60,7 +58,6 @@ export default function SummerTips() {
                 />
               </figure>
 
-              {/* CONTENT */}
               <div className="p-4 space-y-2">
 
                 <h3 className="font-semibold text-lg text-gray-800">
@@ -71,7 +68,6 @@ export default function SummerTips() {
                   {tip.desc}
                 </p>
 
-                {/* CTA */}
                 <button className="flex items-center gap-2 text-primary text-sm font-medium mt-2 hover:gap-3 transition-all">
                   Learn More <FaArrowRight />
                 </button>

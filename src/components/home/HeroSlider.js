@@ -53,7 +53,6 @@ export default function HeroSlider() {
 
       <div className="relative w-full h-[260px] md:h-[420px] rounded-2xl overflow-hidden shadow-lg">
 
-        {/* SLIDES */}
         {slides.map((slide, index) => (
           <div
             key={slide.id}
@@ -69,7 +68,6 @@ export default function HeroSlider() {
               className="w-full h-full object-cover object-center"
             />
 
-            {/* SECOND SLIDE TEXT (CENTERED + FIXED COLOR) */}
             {index === 1 && (
               <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
 
@@ -94,7 +92,6 @@ export default function HeroSlider() {
           </div>
         ))}
 
-        {/* ARROWS */}
         <button
           onClick={prevSlide}
           className="absolute left-4 top-1/2 -translate-y-1/2 z-20 btn btn-circle bg-white text-black hover:bg-primary hover:text-white shadow-md"
@@ -109,7 +106,6 @@ export default function HeroSlider() {
           <FaArrowRight />
         </button>
 
-        {/* DOTS */}
         <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
           {slides.map((_, index) => (
             <button

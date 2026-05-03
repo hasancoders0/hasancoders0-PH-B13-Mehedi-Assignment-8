@@ -91,12 +91,10 @@ export default function RegisterPage() {
 
       <div className="w-full max-w-md bg-base-100 shadow-xl rounded-2xl p-6 space-y-6 animate__animated animate__fadeIn">
 
-        {/* TITLE */}
         <h2 className="text-2xl font-bold text-center text-primary">
           Create Account
         </h2>
 
-        {/* 🔥 GOOGLE BUTTON */}
         <button
           onClick={handleGoogleRegister}
           disabled={googleLoading}
@@ -113,10 +111,8 @@ export default function RegisterPage() {
 
         <div className="divider text-sm">OR</div>
 
-        {/* FORM */}
         <form onSubmit={handleRegister} className="space-y-4">
 
-          {/* NAME */}
           <div className="flex items-center gap-2 border rounded-lg px-3 py-2 focus-within:ring-2 focus-within:ring-primary">
             <FaUser className="text-gray-500" />
             <input
@@ -129,7 +125,6 @@ export default function RegisterPage() {
             />
           </div>
 
-          {/* EMAIL */}
           <div className="flex items-center gap-2 border rounded-lg px-3 py-2 focus-within:ring-2 focus-within:ring-primary">
             <FaEnvelope className="text-gray-500" />
             <input
@@ -142,7 +137,6 @@ export default function RegisterPage() {
             />
           </div>
 
-          {/* PASSWORD */}
           <div className="flex items-center gap-2 border rounded-lg px-3 py-2 focus-within:ring-2 focus-within:ring-primary">
             <FaLock className="text-gray-500" />
             <input
@@ -155,7 +149,6 @@ export default function RegisterPage() {
             />
           </div>
 
-          {/* SUBMIT BUTTON */}
           <button
             className={`btn btn-primary w-full flex items-center justify-center gap-2 ${
               loading ? "loading" : ""
@@ -170,7 +163,6 @@ export default function RegisterPage() {
           </button>
         </form>
 
-        {/* LOGIN LINK */}
         <p className="text-sm text-center">
           Already have an account?{" "}
           <Link
