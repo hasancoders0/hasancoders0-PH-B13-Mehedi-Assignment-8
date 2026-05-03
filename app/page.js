@@ -1,4 +1,3 @@
-import Hero from '@/components/home/Hero'
 import HeroSlider from '@/components/home/HeroSlider'
 import PopularProducts from '@/components/home/PopularProducts'
 import SummerTips from '@/components/home/SummerTips'
