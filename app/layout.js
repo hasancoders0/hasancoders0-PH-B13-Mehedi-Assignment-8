@@ -1,6 +1,7 @@
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import "animate.css";
 import ToastProvider from "@/components/ToastProvider";
 
 export default function RootLayout({ children }) {
